@@ -45,7 +45,7 @@ FetchContent_MakeAvailable(cli11)
 # #############################################
 # Options
 option(TRIESTE_BUILD_SAMPLES "Specifies whether to build the samples" ON)
-option(TRIESTE_BUILD_SHARED "Specifies whether to build trieste as a shared library" OFF)
+option(BUILD_SHARED_LIBS "Specifies whether to build trieste as a shared library" OFF)
 
 set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
 
@@ -62,7 +62,7 @@ target_include_directories(trieste
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
-if(TRIESTE_BUILD_SHARED)
+if(BUILD_SHARED_LIBS)
 target_link_libraries(trieste
   INTERFACE
   snmalloc
