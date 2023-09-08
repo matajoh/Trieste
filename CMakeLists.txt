@@ -65,7 +65,7 @@ target_include_directories(trieste
 if(TRIESTE_BUILD_SHARED)
 target_link_libraries(trieste
   INTERFACE
-  snmallocshim
+  snmalloc
   re2::re2
   CLI11::CLI11
 )
