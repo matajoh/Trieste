@@ -65,7 +65,7 @@ target_include_directories(trieste
 if(BUILD_SHARED_LIBS)
   set(SNMALLOC_TARGET snmalloc)
 else()
-  set(SNMALLOC_TARGET snmallocshim-static)
+  set(SNMALLOC_TARGET snmalloc snmallocshim-static)
 endif()
 
 target_link_libraries(trieste
