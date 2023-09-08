@@ -63,20 +63,17 @@ target_include_directories(trieste
 )
 
 if(BUILD_SHARED_LIBS)
-target_link_libraries(trieste
-  INTERFACE
-  snmalloc
-  re2::re2
-  CLI11::CLI11
-)
+  set(SNMALLOC_TARGET snmalloc)
 else()
+  set(SNMALLOC_TARGET snmallocshim-static)
+endif()
+
 target_link_libraries(trieste
   INTERFACE
-  snmallocshim-static
+  ${SNMALLOC_TARGET}
   re2::re2
   CLI11::CLI11
 )
-endif()
 
 target_compile_features(trieste INTERFACE cxx_std_20)
 
@@ -100,7 +97,7 @@ install(CODE [[
   file(REMOVE_RECURSE ${CMAKE_INSTALL_PREFIX}/.)
   ]])
 
-install(TARGETS trieste snmallocshim-static snmalloc re2 CLI11
+install(TARGETS trieste  ${SNMALLOC_TARGET} re2 CLI11
   EXPORT ${PROJECT_NAME}_Targets
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
