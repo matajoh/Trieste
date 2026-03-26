@@ -1,0 +1,4 @@
+trieste provides CMake targets:
+
+    find_package(trieste CONFIG REQUIRED)
+    target_link_libraries(<your-target> PRIVATE trieste::trieste)
